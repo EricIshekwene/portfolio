@@ -1,0 +1,69 @@
+.
+
+💻 Programming Languages (most impactful for full-stack)
+
+JavaScript (ES6+) → Core of React, Node.js, Express
+
+Python → Backend logic, scripting, APIs, data tools
+
+SQL → Database queries, schema design
+
+Java → OOP foundation, scalable architecture knowledge
+
+C# → Secondary backend language (useful via Unity & enterprise contexts)
+
+HTML → Structure & accessibility
+
+CSS → Styling & responsive layout
+
+⚙️ Frameworks & Libraries
+
+React → Core front-end framework for UI development
+
+Node.js → Server-side runtime environment
+
+Express → Backend routing, APIs, middleware
+
+Vite → Build tool & dev server (React projects)
+
+Tailwind CSS → Utility-first styling for rapid UI design
+
+EJS → Server-side templating (used in earlier projects)
+
+Unity → Secondary, game-based or simulation development
+
+🧠 Technologies & Tools
+
+PostgreSQL → Primary relational database, production-ready
+
+REST APIs → Core method of client-server communication
+
+AWS → Cloud hosting, scaling, and deployment infrastructure
+
+Passport.js (Auth) → Authentication and user sessions
+
+Cloudinary → Image and file storage integration
+
+Git / GitHub → Version control and collaboration
+
+OOP & Data Structures → Core computer science fundamentals
+
+Railway / Render → Hosting and deployment platforms
+
+Web Scraping → Automation and data collection
+
+🧩 Development Practices
+
+Full-Stack Web Development → End-to-end design and implementation
+
+Authentication & Authorization → Secure login and user management
+
+API Integration → Connecting client & server layers
+
+Responsive UI / UX → Clean design and usability across devices
+
+Scalable Architecture → Handling high traffic and data loads
+
+Database Management & Modeling → Efficient queries, schema design
+
+Version Control Workflow (Git) → Team collaboration best practices

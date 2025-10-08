@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('./assets/fonts/Vollkorn-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./assets/fonts/WorkSans-Regular.ttf') format('truetype');
+}
+@import "tailwindcss";
+
+@theme {
+  --font-vollkorn: 'Vollkorn' , serif;
+  --font-work-sans: 'Work Sans' , sans-serif;
+}
