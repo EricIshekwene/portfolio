@@ -6,11 +6,7 @@ import { useState } from 'react';
 import Header from './components/Header'
 import Switch from './components/sub/Switch'
 import Skills from './components/Skills'
-import Folder from './components/sub/folder'
-import github1 from './assets/github1.png'
-import github2 from './assets/github2.png'
-import github3 from './assets/github3.png'
-import { FaGithub } from 'react-icons/fa'
+
 import Github from './components/Github'
 import tcutss from './assets/tcutss.assets.png'
 function App() {
