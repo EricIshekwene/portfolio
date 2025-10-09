@@ -13,8 +13,8 @@ export default function Skills() {
                 <p className="text-5xl font-vollkorn mb-8 self-start">Skills</p>
 
                 <div className="flex flex-col gap-4 h-full w-full">
-                  
-                    <div className="w-full gap-1 rounded-md flex flex-col items-start justify-start">
+
+                    <div className="w-full gap-2 rounded-md flex flex-col items-start justify-start">
                         <p className="text-xl font-semibold text-left">Programming Languages</p>
                         <hr className='border-gray-300 w-1/3 border-1 mt-1' />
                         <div className='flex flex-row flex-wrap w-full justify-start gap-4'>
@@ -27,7 +27,7 @@ export default function Skills() {
                         </div>
                     </div>
 
-                    <div className="w-full gap-1 rounded-md flex flex-col items-start justify-start">
+                    <div className="w-full gap-2 rounded-md flex flex-col items-start justify-start">
                         <p className="text-xl font-semibold text-left">Frameworks & Libraries</p>
                         <hr className='border-gray-300 w-1/3 border-1 mt-1' />
                         <div className='flex flex-row flex-wrap w-full justify-start gap-4'>
@@ -40,7 +40,7 @@ export default function Skills() {
                         </div>
                     </div>
 
-                    <div className="w-full gap-1 rounded-md flex flex-col items-start justify-start">
+                    <div className="w-full gap-2 rounded-md flex flex-col items-start justify-start">
                         <p className="text-xl font-semibold text-left">Tools & Technologies</p>
                         <hr className='border-gray-300 w-1/3 border-1 mt-1' />
                         <div className='flex flex-row flex-wrap w-full justify-start gap-4'>
@@ -58,15 +58,17 @@ export default function Skills() {
                     rel="noopener noreferrer"
                     className="self-start mt-5 flex flex-row items-center justify-center"
                 >
-                    <button className="flex items-center gap-2 bg-black text-white font-vollkorn px-5 py-2 rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    <button className="flex items-center gap-2  border-1 border-blue-400 text-blue-400 font-vollkorn px-5 py-2 rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
                         <CiLinkedin className="text-2xl" />
                         <span className="text-lg font-semibold">See on LinkedIn</span>
                     </button>
                 </a>
             </div>
 
+            <div className='h-full w-3/5 flex items-center justify-center'>
+                <img src={day_pick} alt='day_pick' className=' w-10/11  shadow-sm rounded-lg ' />
+            </div>
 
-            <img src={day_pick} alt='day_pick' className='h-full w-3/5  rounded-lg ' />
         </div >
     )
 }

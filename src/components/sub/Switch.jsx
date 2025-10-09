@@ -2,7 +2,7 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 export default function Switch({ darkMode, toggleDarkMode }) {
   return (
-    <div id='dark-mode' className='h-20 border- flex flex-row items-center justify-center'>
+    <div id='dark-mode' className='h-20 mt-20 flex flex-row items-center justify-center'>
             <div className="h-full flex items-center justify-center w-1/3 px-6">
               <button
                 onClick={toggleDarkMode}

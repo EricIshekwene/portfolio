@@ -46,7 +46,7 @@ export default function Github() {
           href="https://github.com/EricIshekwene"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 text-black border-2 border-black hover:bg-[#c0392b] font-work-sans font-semibold py-3 px-6 rounded-full shadow-md transition-all duration-300"
+          className="flex items-center gap-3 text-black border-2 border-black hover:bg-[black] hover:text-white font-work-sans font-semibold py-3 px-6 rounded-full shadow-md transition-all duration-300"
         >
           EricIshekwene <FaGithub size={22} />
         </a>
