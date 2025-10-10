@@ -40,7 +40,7 @@ export default function Header({ darkMode }) {
                     displayOverlayContent={true}
                     overlayContent={
                         <p
-                            className={`tilted-card-demo-text border-2 border-white/20 ${darkMode ? 'bg-black/10 text-white' : 'bg-white/10 text-black'
+                            className={`tilted-card-demo-text border-2 border-white/20 ${darkMode ? 'bg-black/10 text-white' : 'bg-white/10 text-white'
                                 } ml-5 mt-5 font-bold font-vollkorn rounded-md px-4`}
                         >
                             Eric Ishekwene
