@@ -12,3 +12,6 @@
   --font-vollkorn: 'Vollkorn' , serif;
   --font-work-sans: 'Work Sans' , sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
