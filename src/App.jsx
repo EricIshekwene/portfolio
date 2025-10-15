@@ -32,15 +32,10 @@ function App() {
 
   return (
     <>
-      {isLarge ? (
-        <div className="mobile-overlay flex flex-col items-center justify-center h-screen bg-black text-white text-center px-6">
-          <h1 className="text-2xl font-vollkorn">This portfolio isn’t optimized for mobile yet.</h1>
-          <p className="text-lg mt-4 text-gray-300">Please view on a desktop device for the full experience.</p>
-        </div>
-      ) : (
+      
         <div className={`h-full w-full flex flex-col items-center justify-center ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
           <Navbar darkMode={darkMode} />
-          <div id='main' className='mx-auto w-7/9'>
+          <div id='main' className={`mx-auto w-7/9 ${isLarge ? 'w-full' : 'w-7/9'}`}>
             <Switch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
             <Header darkMode={darkMode} />
             <Skills darkMode={darkMode} />
@@ -52,7 +47,7 @@ function App() {
           </div>
           <Footer darkMode={darkMode} />
         </div>
-      )}
+      
     </>
   )
 }
