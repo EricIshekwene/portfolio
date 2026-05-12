@@ -5,6 +5,10 @@ import my_face from '../assets/my_face.jpg'
 import ohio_state from '../assets/Ohio_State_Buckeyes_logo.svg.png'
 import shek from '../assets/Untitled (51).png'
 import kino from '../assets/kino logo.b6e558d722123dfa26e9.png'
+import coachable from '../assets/coachable_Logo.png'
+import coachableWhite from '../assets/White_Coachable_Logo.png'
+import amazonBlack from '../assets/amazon_black.webp'
+import amazonWhite from '../assets/amazon_white.png'
 import ohio_state_dark from '../assets/ohio_state_buckeyes_logo_alternate_19736107.png'
 
 export default function Header({ darkMode }) {
@@ -83,11 +87,11 @@ export default function Header({ darkMode }) {
                 </p>
                 <p className={`text-sm sm:text-base md:text-lg lg:text-xl font-work-sans w-11/12 md:w-4/5 leading-relaxed ${darkMode ? 'text-white' : 'text-black'}`}>
                     Developer focused on creating scalable, user-driven web applications with React,
-                    Node.js, and PostgreSQL, combining clean design and functionality across freelance
-                    and Kino Vision projects.
+                    Node.js, and PostgreSQL, combining clean design and functionality across freelance,
+                    startup, and product-focused work.
                 </p>
 
-                <div className='flex flex-row gap-8 mt-2 items-center justify-start'>
+                <div className='flex flex-row flex-wrap gap-8 mt-2 items-center justify-start'>
                     {darkMode ? (
                         <img src={ohio_state_dark} alt='ohio_state' className='h-10 object-contain' />
                     ) : (
@@ -99,6 +103,16 @@ export default function Header({ darkMode }) {
                         className={`h-10 object-contain ${darkMode ? 'filter invert' : ''}`}
                     />
                     <img src={kino} alt='kino' className='h-10 object-contain' />
+                    <img
+                        src={darkMode ? coachableWhite : coachable}
+                        alt='coachable'
+                        className='h-10 object-contain'
+                    />
+                    <img
+                        src={darkMode ? amazonWhite : amazonBlack}
+                        alt='amazon'
+                        className='h-10 object-contain'
+                    />
                 </div>
             </motion.div>
 
@@ -163,11 +177,11 @@ export default function Header({ darkMode }) {
                 </p>
                 <p className={`text-sm sm:text-base md:text-lg lg:text-xl font-work-sans   leading-relaxed ${darkMode ? 'text-white' : 'text-black'}`}>
                     Developer focused on creating scalable, user-driven web applications with React,
-                    Node.js, and PostgreSQL, combining clean design and functionality across freelance
-                    and Kino Vision projects.
+                    Node.js, and PostgreSQL, combining clean design and functionality across freelance,
+                    startup, and product-focused work.
                 </p>
 
-                <div className='flex flex-row gap-8 mt-2 items-center justify-evenly'>
+                <div className='flex flex-row flex-wrap gap-8 mt-2 items-center justify-evenly'>
                     {darkMode ? (
                         <img src={ohio_state_dark} alt='ohio_state' className='h-10 object-contain' />
                     ) : (
@@ -179,6 +193,16 @@ export default function Header({ darkMode }) {
                         className={`h-10 object-contain ${darkMode ? 'filter invert' : ''}`}
                     />
                     <img src={kino} alt='kino' className='h-10 object-contain' />
+                    <img
+                        src={darkMode ? coachableWhite : coachable}
+                        alt='coachable'
+                        className='h-10 object-contain'
+                    />
+                    <img
+                        src={darkMode ? amazonWhite : amazonBlack}
+                        alt='amazon'
+                        className='h-10 object-contain'
+                    />
                 </div>
             </motion.div>
 

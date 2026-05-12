@@ -1,191 +1,93 @@
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
 import OhioState from '../assets/Ohio_State_Buckeyes_logo.svg.png'
 import shek from '../assets/Untitled (51).png'
 import kino from '../assets/kino logo.b6e558d722123dfa26e9.png'
-import ohio_state_dark from '../assets/ohio_state_buckeyes_logo_alternate_19736107.png'
+import coachableFull from '../assets/full_Coachable_logo.png'
+import coachableFullWhite from '../assets/full_coachable_white_logo.png'
+import ohioStateDark from '../assets/ohio_state_buckeyes_logo_alternate_19736107.png'
+import amazonBlack from '../assets/amazon_black.webp'
+import amazonWhite from '../assets/amazon_white.png'
 
 export default function Blurb({ darkMode }) {
-  const isLarge = useIsLarge()
-  function useIsLarge() {
-    const [isLarge, setIsLarge] = useState(window.innerWidth > 800)
-    useEffect(() => {
-      const handleResize = () => setIsLarge(window.innerWidth > 800)
-      window.addEventListener("resize", handleResize)
-      return () => window.removeEventListener("resize", handleResize)
-    }, [])
-    return isLarge
-  }
+  const items = [
+    {
+      title: 'Computer Science & Engineering',
+      body: 'Entrepreneurship & Innovation Scholars',
+      image: darkMode ? ohioStateDark : OhioState,
+      alt: 'Ohio State',
+      imageClassName: 'object-contain',
+    },
+    {
+      title: 'Shek Solutions',
+      body: 'My personal freelancing company for local businesses in Columbus, building static and full-stack websites at an affordable cost.',
+      image: shek,
+      alt: 'Shek',
+      imageClassName: darkMode ? 'object-contain filter invert' : 'object-contain',
+    },
+    {
+      title: 'Kino | Full-Stack Intern',
+      body: 'Full-stack developer at Kino Fitness, improving platform performance, UI/UX, and scalability. Contributed to API integrations, deployment optimization, and an interactive analytics dashboard.',
+      image: kino,
+      alt: 'Kino',
+      imageClassName: 'object-contain',
+    },
+    {
+      title: 'Coachable | Founder & Developer',
+      body: 'Founder and developer of Coachable, a digital playbook platform that helps coaches create, animate, organize, and share plays with their teams across 40+ sports.',
+      image: darkMode ? coachableFullWhite : coachableFull,
+      alt: 'Coachable',
+      imageClassName: 'object-contain',
+    },
+    {
+      title: 'Amazon | Software Engineering Intern',
+      body: 'Shipped features in React and TypeScript across the full development lifecycle, including code reviews and stakeholder collaboration. Partnered with senior engineers to resolve front-end issues and improve reliability and user experience at scale.',
+      image: darkMode ? amazonWhite : amazonBlack,
+      alt: 'Amazon',
+      imageClassName: 'object-contain',
+    },
+  ]
+
   return (
-    <>
-      {isLarge ? <AnimatePresence mode="wait">
-        <motion.div
-          key={darkMode ? 'dark' : 'light'}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="h-200 lg:h-120 mb-40 lg:mb-20 w-full flex flex-row mt-20 items-center justify-center"
-        >
-          <div className="flex flex-col w-1/3 h-full">
-            <div className="flex flex-col pl-0 pr-0 pt-0 lg:pl-20 lg:pr-20 lg:pt-10 h-4/7 justify-center items-center overflow-hidden">
-              <img
-                src={darkMode ? ohio_state_dark : OhioState}
-                alt="Ohio State"
-                className="object-contain h-full w-full"
-                style={{ maxHeight: '100%', maxWidth: '100%' }}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-start p-0 lg:p-10 h-3/7">
-              <hr className="border-gray-300 w-1/3 border-1 mt-1 mb-4 mx-auto" />
-              <p
-                className={`text-2xl lg:text-3xl font-vollkorn font-bold mb-4 mx-auto text-center ${darkMode ? 'text-white' : 'text-black'
-                  }`}
-              >
-                Computer Science & Engineering
-              </p>
-              <p
-                className={`text-sm lg:text-md font-work-sans mb-4 mx-auto text-center ${darkMode ? 'text-white' : 'text-black'
-                  }`}
-              >
-                Entrepreneurship & Innovation Scholars
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col w-1/3 h-full">
-            <div className="flex flex-col pl-0 pr-0 pt-0 lg:pl-20 lg:pr-20 lg:pt-10 h-4/7 justify-center items-center overflow-hidden">
-              <img
-                src={shek}
-                alt="Shek"
-                className={`object-contain h-full w-full ${darkMode ? 'filter invert' : ''
-                  }`}
-                style={{ maxHeight: '100%', maxWidth: '100%' }}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-start p-0 lg:p-10 h-3/7">
-              <hr className="border-gray-300 w-1/3 border-1 mt-1 mb-4 mx-auto" />
-              <p
-                className={`text-2xl lg:text-3xl font-vollkorn font-bold mb-4 mx-auto text-center ${darkMode ? 'text-white' : 'text-black'
-                  }`}
-              >
-                Shek Solutions
-              </p>
-              <p
-                className={`text-sm lg:text-md font-work-sans mb-4 mx-auto text-center ${darkMode ? 'text-white' : 'text-black'
-                  }`}
-              >
-                My personal freelancing company for local businesses in Columbus,
-                building static and full-stack websites at an affordable cost.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col w-1/3 h-full">
-            <div className="flex flex-col pl-0 pr-0 pt-0 lg:pl-20 lg:pr-20 lg:pt-10 h-4/7 justify-center items-center overflow-hidden">
-              <img
-                src={kino}
-                alt="Kino"
-                className="object-contain h-full w-full"
-                style={{ maxHeight: '100%', maxWidth: '100%', minHeight: '100%', minWidth: '100%' }}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-start p-0 lg:p-10 h-3/7">
-              <hr className="border-gray-300 w-1/3 border-1 mt-1 mb-4 mx-auto" />
-              <p
-                className={`text-2xl lg:text-3xl font-vollkorn font-bold mb-4 mx-auto text-center ${darkMode ? 'text-white' : 'text-black'
-                  }`}
-              >
-                Kino | Full-Stack Intern
-              </p>
-              <p
-                className={`text-sm lg:text-md font-work-sans mb-4 mx-auto text-center ${darkMode ? 'text-white' : 'text-black'
-                  }`}
-              >
-                Full-stack developer at Kino Fitness, improving platform
-                performance, UI/UX, and scalability. Contributed to API
-                integrations, deployment optimization, and an interactive
-                analytics dashboard.
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence> :
-        <AnimatePresence mode="wait">
+    <section className='w-full px-4 py-8 sm:px-6 lg:px-10 lg:py-14'>
+      <div className='mx-auto flex w-full max-w-6xl flex-col gap-5 lg:gap-6'>
+        {items.map((item, index) => (
           <motion.div
-            key={darkMode ? 'dark' : 'light'}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full flex flex-col items-center justify-center gap-2 mt-5 mb-5"
+            key={item.title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: index * 0.08, ease: 'easeOut' }}
+            className={`flex w-full items-center gap-4 border-b px-4 py-4 sm:gap-6 sm:px-6 sm:py-5 lg:gap-8 lg:px-8 lg:py-6 ${darkMode ? 'border-white/10' : 'border-black/10'}`}
           >
-
-            <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-6xl">
-              <div className="flex items-center justify-center w-5/8 p-6">
+            <div className='flex w-24 shrink-0 items-center justify-center sm:w-32 lg:w-40'>
+              {item.image ? (
                 <img
-                  src={darkMode ? ohio_state_dark : OhioState}
-                  alt="Ohio State"
-                  className="object-contain w-full h-auto max-h-60"
+                  src={item.image}
+                  alt={item.alt}
+                  className={`h-auto max-h-16 w-full sm:max-h-20 lg:max-h-24 ${item.imageClassName}`}
                 />
-              </div>
-              <div className="flex flex-col items-center justify-center w-full px-6  text-center lg:text-left">
-                <hr className="border-gray-300 w-1/4 border-1 mb-4 mx-auto lg:mx-0" />
-                <p className={`text-2xl lg:text-3xl font-vollkorn font-bold mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Computer Science & Engineering
-                </p>
-                <p className={`text-sm lg:text-md font-work-sans ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Entrepreneurship & Innovation Scholars
-                </p>
-              </div>
+              ) : (
+                <div
+                  className={`flex h-16 w-full max-w-[9rem] items-center justify-center rounded-2xl border px-4 font-vollkorn text-xl font-bold lowercase sm:h-20 sm:text-2xl ${darkMode ? 'border-white/15 text-white' : 'border-black/10 text-black'}`}
+                >
+                  {item.badge}
+                </div>
+              )}
             </div>
 
-
-            <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-6xl">
-              <div className="flex items-center justify-center w-5/8 p-6">
-                <img
-                  src={shek}
-                  alt="Shek"
-                  className={`object-contain w-full h-auto max-h-60 ${darkMode ? 'filter invert' : ''}`}
-                />
-              </div>
-              <div className="flex flex-col items-center justify-center w-full px-6 lg:px-12 text-center lg:text-left">
-                <hr className="border-gray-300 w-1/4 border-1 mb-4 mx-auto lg:mx-0" />
-                <p className={`text-2xl lg:text-3xl font-vollkorn font-bold mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Shek Solutions
-                </p>
-                <p className={`text-sm lg:text-md font-work-sans leading-relaxed ${darkMode ? 'text-white' : 'text-black'}`}>
-                  My personal freelancing company for local businesses in Columbus,
-                  building static and full-stack websites at an affordable cost.
-                </p>
-              </div>
-            </div>
-
-
-            <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-6xl">
-              <div className="flex items-center justify-center w-5/8 p-6">
-                <img
-                  src={kino}
-                  alt="Kino"
-                  className="object-contain w-full h-auto max-h-60"
-                />
-              </div>
-              <div className="flex flex-col items-center justify-center w-full px-6 lg:px-12 text-center lg:text-left">
-                <hr className="border-gray-300 w-1/4 border-1 mb-4 mx-auto lg:mx-0" />
-                <p className={`text-2xl lg:text-3xl font-vollkorn font-bold mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Kino | Full-Stack Intern
-                </p>
-                <p className={`text-sm lg:text-md font-work-sans leading-relaxed ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Full-stack developer at Kino Fitness, improving platform
-                  performance, UI/UX, and scalability. Contributed to API
-                  integrations, deployment optimization, and an interactive
-                  analytics dashboard.
-                </p>
-              </div>
+            <div className='min-w-0 flex-1'>
+              <hr className='mb-3 w-12 border-gray-300 sm:w-16' />
+              <p className={`text-xl font-vollkorn font-bold leading-tight sm:text-2xl lg:text-3xl ${darkMode ? 'text-white' : 'text-black'}`}>
+                {item.title}
+              </p>
+              <p className={`mt-2 text-sm leading-6 sm:text-base sm:leading-7 ${darkMode ? 'text-white' : 'text-black'}`}>
+                {item.body}
+              </p>
             </div>
           </motion.div>
-        </AnimatePresence>}
-
-    </>
+        ))}
+      </div>
+    </section>
   )
 }

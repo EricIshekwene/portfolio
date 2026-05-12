@@ -9,6 +9,7 @@ import Tcutss from './components/Tcutss'
 import BuckeyeConnect from './components/BuckeyeConnect'
 import Blurb from './components/Blurb'
 import Joeys from './components/Joeys'
+import Coachable from './components/Coachable'
 import Footer from './footer'
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Header darkMode={darkMode} />
             <Skills darkMode={darkMode} />
             <Blurb darkMode={darkMode} />
+            <Coachable darkMode={darkMode} />
             <Tcutss darkMode={darkMode} />
             <BuckeyeConnect darkMode={darkMode} />
             <Joeys darkMode={darkMode} />

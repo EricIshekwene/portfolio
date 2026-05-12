@@ -38,7 +38,7 @@ export default function Navbar({ darkMode }) {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
         ${isTransparent ? 'shadow-none backdrop-blur-0' : 'shadow-md backdrop-blur-md'} 
         ${darkMode ? 'text-white' : 'text-black'}
-        ${isLarge ? 'px-40 py-4' : 'px-6 py-3'}`}
+        ${isLarge ? 'px-16 py-2' : 'px-4 py-2'}`}
       style={{
         backgroundColor: darkMode
           ? `rgba(17, 24, 39, ${bgOpacity})` // gray-900
@@ -50,9 +50,9 @@ export default function Navbar({ darkMode }) {
           <img
             src={mylogo}
             alt='mylogo'
-            className={`w-10 h-10 transition-all ${darkMode ? 'filter invert' : ''}`}
+            className={`w-7 h-7 transition-all ${darkMode ? 'filter invert' : ''}`}
           />
-          <div className='flex items-center gap-8'>
+          <div className='flex items-center gap-6 text-sm'>
             <a href='#top' className='font-vollkorn hover:text-[#3B82F6] transition-colors duration-200'>
               Home
             </a>
@@ -72,9 +72,9 @@ export default function Navbar({ darkMode }) {
           <img
             src={mylogo}
             alt='mylogo'
-            className={`w-8 h-8 transition-all ${darkMode ? 'filter invert' : ''}`}
+            className={`w-6 h-6 transition-all ${darkMode ? 'filter invert' : ''}`}
           />
-          <div className='flex items-center  gap-4 text-sm mr-4 '>
+          <div className='flex items-center gap-3 text-xs mr-2'>
             <a href='#top' className='font-vollkorn hover:text-[#3B82F6] transition-colors duration-200'>
               Home
             </a>
