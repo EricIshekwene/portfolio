@@ -1,5 +1,5 @@
 import React from 'react'
-import coachableVideo from '../assets/videos/Coachable_rugby_demo.mp4'
+import coachableVideo from '../assets/videos/Coachable_rugby_demo_web.mp4'
 
 export default function Coachable({ darkMode }) {
   const description = 'Sports play designer built with React 19, Vite 7, and react-konva/Konva. I built a keyframe-based animation system with interpolation and RAF-driven playback, then updated canvas nodes imperatively so animation stays outside the React render loop. Includes timeline editing, recording mode, snapping, drawing tools, undo/redo, JSON serialization, and a Railway-hosted Postgres API for auth, playbooks, and prefab storage.'
