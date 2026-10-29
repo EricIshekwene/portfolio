@@ -1,17 +1,240 @@
-@font-face {
-  font-family: 'Vollkorn';
-  src: url('./assets/fonts/Vollkorn-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Work Sans';
-  src: url('./assets/fonts/WorkSans-Regular.ttf') format('truetype');
-}
 @import "tailwindcss";
 
-@theme {
-  --font-vollkorn: 'Vollkorn' , serif;
-  --font-work-sans: 'Work Sans' , sans-serif;
+/*
+ * Design tokens. Dark first, monochrome (DECISIONS #2, #4C).
+ * Raw values live on :root (dark) and [data-theme="light"]. Tailwind utilities read them through
+ * @theme inline below, so `bg-bg`, `text-muted`, `border-line` etc. switch with the theme.
+ * Color comes only from project media: there is no accent hue and the default Tailwind palette is removed.
+ */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface-2: #181818;
+  --surface-3: #212121;
+  --line: rgb(255 255 255 / 0.09);
+  --line-strong: rgb(255 255 255 / 0.18);
+  --fg: #ededed;
+  --muted: #a3a3a3; /* 7.9:1 on --bg */
+  --subtle: #8a8a8a; /* 5.6:1 on --bg, 4.6:1 on --surface-3. Smallest text color allowed. */
+  --glass: rgb(20 20 20 / 0.86);
+  --focus: #ffffff;
 }
-html {
-  scroll-behavior: smooth;
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f2f2f2;
+  --surface-3: #e8e8e8;
+  --line: rgb(0 0 0 / 0.09);
+  --line-strong: rgb(0 0 0 / 0.18);
+  --fg: #0a0a0a;
+  --muted: #525252; /* 7.4:1 on --bg */
+  --subtle: #666666; /* 5.5:1 on --bg, 4.7:1 on --surface-3 */
+  --glass: rgb(255 255 255 / 0.88);
+  --focus: #000000;
+}
+
+:root {
+  /* Layout constants (not themed). */
+  --nav-h: 4.5rem; /* fixed nav band height incl. its top offset */
+  --scroll-offset: calc(var(--nav-h) + 1rem);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 600ms;
+}
+
+@theme inline {
+  /* Colors: semantic only. */
+  --color-*: initial;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-glass: var(--glass);
+  --color-focus: var(--focus);
+  /* Inverse pair for high-emphasis chips and primary buttons (white on dark, black on light). */
+  --color-inverse: var(--fg);
+  --color-on-inverse: var(--bg);
+  /* Fixed absolutes, for media scrims and logos. */
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+@theme {
+  /* Fonts (DECISIONS #3): Geist for everything, Geist Mono for meta. */
+  --font-*: initial;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Type scale. Tailwind's text-xs..text-9xl stay available; prefer these names. */
+  --text-meta: 0.75rem; /* mono labels, dates, stack, numbers */
+  --text-meta--line-height: 1rem;
+  --text-meta--letter-spacing: 0.04em;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.25rem;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.5;
+  --text-title: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem); /* h3, card titles */
+  --text-title--line-height: 1.3;
+  --text-title--letter-spacing: -0.01em;
+  --text-heading: clamp(1.875rem, 1.35rem + 2.1vw, 3rem); /* h2, section titles */
+  --text-heading--line-height: 1.08;
+  --text-heading--letter-spacing: -0.03em;
+  --text-display: clamp(2.75rem, 1.6rem + 5.2vw, 6rem); /* h1, hero name */
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.045em;
+  --text-mega: clamp(3rem, 0.5rem + 12.5vw, 13rem); /* full-width sign-off */
+  --text-mega--line-height: 0.88;
+  --text-mega--letter-spacing: -0.06em;
+
+  /* Spacing additions (Tailwind's 4px-step scale stays). */
+  --spacing-gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem); /* page side padding */
+  --spacing-section: clamp(4.5rem, 2.75rem + 7vw, 9rem); /* vertical rhythm between sections */
+  --spacing-section-sm: clamp(3rem, 2rem + 4vw, 5.5rem);
+  --spacing-stack: clamp(2rem, 1.5rem + 2vw, 3.5rem); /* header to body inside a section */
+  --spacing-nav: var(--nav-h);
+
+  /* Widths: max-w-page, max-w-wide, max-w-text. */
+  --container-page: 76rem;
+  --container-wide: 90rem;
+  --container-text: 42rem;
+
+  /* Radii: rounded-control / card / panel / media. Use rounded-full for pills. */
+  --radius-control: 0.625rem;
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
+  --radius-media: 0.75rem;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+}
+
+/* Theme variants, for the rare case a token is not enough: `light:invert`, `dark:hidden`. */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@layer base {
+  html {
+    background-color: var(--bg);
+    color: var(--fg);
+    /* The fixed nav must never cover a focus target or an anchor jump (WCAG 2.4.11). */
+    scroll-padding-top: var(--scroll-offset);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    position: relative; /* Base UI: iOS 26 Safari backdrops */
+    min-height: 100dvh;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
+  }
+
+  #root {
+    isolation: isolate; /* Base UI portals stack above the page */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd,
+  figcaption {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--fg);
+    color: var(--bg);
+  }
+
+  /* Focus: high-contrast ring (white in dark, black in light) with a bg-colored halo so it reads on media. */
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+
+  /* Programmatic focus targets (skip link target, sections) do not need a ring. */
+  [tabindex="-1"]:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  /* Hidden-until-hydrated or scroll-revealed content is not allowed: nothing here sets opacity 0 by default. */
+}
+
+@layer components {
+  /* Frosted surface for floating chrome (nav pill, media controls). */
+  .glass {
+    background-color: var(--glass);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass {
+      background-color: var(--surface-2);
+    }
+  }
+
+  /* Mono meta label: dates, stack, eyebrow text, numbers. */
+  .meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    line-height: var(--text-meta--line-height);
+    letter-spacing: var(--text-meta--letter-spacing);
+    text-transform: uppercase;
+    color: var(--subtle);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* White-on-transparent logos (public/media/logos/*-white-*.webp): black in light theme. */
+  .logo-mono {
+    opacity: 0.88;
+  }
+
+  [data-theme="light"] .logo-mono {
+    filter: invert(1);
+  }
+}
+
+/* Global reduced-motion floor. Components still opt out explicitly (motion-reduce:*), this is the safety net. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

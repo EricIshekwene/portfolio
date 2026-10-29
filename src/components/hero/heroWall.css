@@ -1,0 +1,68 @@
+/*
+ * Hero tile wall motion (DECISIONS #5B, DECISIONS-2 #1A). Owner: T6.
+ * Each column track holds its tile group twice, so moving it by exactly half its height loops with no seam.
+ * [data-motion] comes from useWallMotion: "off" never animates (reduced motion, Save-Data, low-end device),
+ * "paused" holds the current frame (tab hidden, hero off screen), "running" drifts.
+ * The reduced-motion media query below is a CSS-level floor that works before any script runs.
+ */
+
+@keyframes hero-wall-up {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes hero-wall-down {
+  from {
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@layer components {
+  /*
+   * Tiles show at the top and fade to nothing toward the name (black = visible in a mask). The stops are measured
+   * from the bottom, where the hero content is anchored, so the wall is fully gone before the logo row at any
+   * viewport height and the captions never sit on a tile.
+   */
+  .hero-wall {
+    --wall-solid: calc(100% - 36rem);
+    --wall-clear: calc(100% - 20rem);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 var(--wall-solid), transparent var(--wall-clear));
+    mask-image: linear-gradient(to bottom, #000 0, #000 var(--wall-solid), transparent var(--wall-clear));
+  }
+
+  @media (min-width: 48rem) {
+    .hero-wall {
+      --wall-solid: calc(100% - 30rem);
+      --wall-clear: calc(100% - 12.5rem);
+    }
+  }
+
+  /* Transform-only animation is composited without will-change, so tall tracks do not hold extra layers. */
+  .hero-wall[data-motion="running"] .hero-wall__track,
+  .hero-wall[data-motion="paused"] .hero-wall__track {
+    animation: hero-wall-up var(--drift-duration, 120s) linear infinite;
+  }
+
+  .hero-wall[data-motion="running"] .hero-wall__track[data-direction="down"],
+  .hero-wall[data-motion="paused"] .hero-wall__track[data-direction="down"] {
+    animation-name: hero-wall-down;
+  }
+
+  .hero-wall[data-motion="paused"] .hero-wall__track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-wall .hero-wall__track,
+    .hero-wall .hero-wall__track[data-direction="down"] {
+      animation: none;
+    }
+  }
+}

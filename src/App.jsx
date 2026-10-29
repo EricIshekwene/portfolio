@@ -1,57 +1,27 @@
-import './App.css'
-import Navbar from './components/Navbar'
-import { useState, useEffect } from 'react';
-import Header from './components/Header'
-import Switch from './components/sub/Switch'
-import Skills from './components/Skills'
-import Github from './components/Github'
-import Tcutss from './components/Tcutss'
-import BuckeyeConnect from './components/BuckeyeConnect'
-import Blurb from './components/Blurb'
-import Joeys from './components/Joeys'
-import Coachable from './components/Coachable'
-import Footer from './footer'
+import Nav from './components/layout/Nav'
+import SkipLink from './components/layout/SkipLink'
+import About from './sections/About'
+import Coachable from './sections/Coachable'
+import Contact from './sections/Contact'
+import Experience from './sections/Experience'
+import Hero from './sections/Hero'
+import Projects from './sections/Projects'
 
-function App() {
-  
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => setDarkMode(!darkMode);
-
-  const isLarge = useIsLarge();
-  function useIsLarge() {
-    const [isLarge, setIsLarge] = useState(window.innerWidth < 800);
-
-    useEffect(() => {
-      const handleResize = () => setIsLarge(window.innerWidth < 800);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    return isLarge;
-  }
-
+// Page order is fixed by DECISIONS-2 (ids in content/site.js). The session parent owns this file;
+// task parents edit only their own sections.
+export default function App() {
   return (
     <>
-      
-        <div className={`h-full w-full flex flex-col items-center justify-center ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-          <Navbar darkMode={darkMode} />
-          <div id='main' className={`mx-auto w-7/9 ${isLarge ? 'w-full' : 'w-7/9'}`}>
-            <Switch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-            <Header darkMode={darkMode} />
-            <Skills darkMode={darkMode} />
-            <Blurb darkMode={darkMode} />
-            <Coachable darkMode={darkMode} />
-            <Tcutss darkMode={darkMode} />
-            <BuckeyeConnect darkMode={darkMode} />
-            <Joeys darkMode={darkMode} />
-            <Github darkMode={darkMode} />
-          </div>
-          <Footer darkMode={darkMode} />
-        </div>
-      
+      <SkipLink />
+      <Nav />
+      <main id="main" tabIndex={-1}>
+        <Hero />
+        <Coachable />
+        <Experience />
+        <Projects />
+        <About />
+      </main>
+      <Contact />
     </>
   )
 }
-
-export default App

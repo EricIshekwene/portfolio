@@ -1,13 +1,68 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/Untitled (52).png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Eric Ishekwene</title>
+    <meta
+      name="description"
+      content="Eric Ishekwene is a founder, developer and creative in Columbus, OH who designs and builds products people use: Coachable, plus internships at eero (Amazon) and Kino."
+    />
+    <meta name="author" content="Eric Ishekwene" />
+    <link rel="canonical" href="https://ericishekwene.org/" />
+
+    <!-- Theme before first paint: localStorage "theme", default dark (DECISIONS #2). -->
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      (function () {
+        var theme = 'dark';
+        try {
+          var stored = window.localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') theme = stored;
+        } catch (e) {
+          /* storage blocked: keep the default */
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#fafafa' : '#0a0a0a');
+      })();
+    </script>
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Twitter. /og.jpg is added at integration. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Eric Ishekwene" />
+    <meta property="og:url" content="https://ericishekwene.org/" />
+    <meta property="og:title" content="Eric Ishekwene" />
+    <meta
+      property="og:description"
+      content="Founder, developer, creative in Columbus, OH. I design and build products people use."
+    />
+    <meta property="og:image" content="https://ericishekwene.org/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Eric Ishekwene, founder, developer and creative, with the logos of eero (Amazon), Coachable and Kino." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Eric Ishekwene" />
+    <meta
+      name="twitter:description"
+      content="Founder, developer, creative in Columbus, OH. I design and build products people use."
+    />
+    <meta name="twitter:image" content="https://ericishekwene.org/og.jpg" />
+    <meta name="twitter:image:alt" content="Eric Ishekwene, founder, developer and creative, with the logos of eero (Amazon), Coachable and Kino." />
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p style="padding: 1.5rem; font-family: system-ui, sans-serif">
+        Eric Ishekwene. Founder, developer, creative in Columbus, OH. Email ishekwene.1@osu.edu or find me at
+        linkedin.com/in/ericishekwene and github.com/EricIshekwene.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
